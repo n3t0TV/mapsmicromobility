@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+
+<body>
+    <div>
+    <table>
+        <tr >
+                <!--menu-->
+                <table>
+                    <tr>
+                      <button mat-button [matMenuTriggerFor]="Station"> 
+                         <mat-icon>local_grocery_store</mat-icon> 
+                        Station
+                      </button>  
+                      <mat-menu #Station="matMenu">
+                        <button mat-menu-item (click)="ViewEstaciones()">
+                            <mat-icon svgIcon="add-station"></mat-icon>
+                            <span>Add</span>
+                        </button>
+                          <button mat-menu-item (click)="ViewEditEstacion()">
+                            <mat-icon svgIcon="edit-station"></mat-icon>
+                            <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="viewDeleteEstaciones()">
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                      <button mat-button [matMenuTriggerFor]="Point">
+                          <mat-icon >trip_origin</mat-icon>
+                          <span>Waypoints</span>
+                      </button>
+                      <mat-menu #Point="matMenu">
+                        <button mat-menu-item (click)="ViewPoints()">
+                            <mat-icon svgIcon="add-point"></mat-icon>
+                            <span>Add</span>
+                        </button>
+                        <button mat-menu-item (click)="viewDeletePoints()">
+                            <mat-icon svgIcon="edit-point"></mat-icon>
+                            <span>Edit</span>
+                        </button>
+                      </mat-menu>
+
+                    </tr>
+                </table>
+
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>
+                <!--Mapas base-->
+                <mat-card>
+                    <table>
+                        <tr>
+                            <th>
+                                <table>
+                                    <tr>
+                                        <th>
+                                            
+                                            <mat-radio-group color="primary" (change)="cambia($event)" >
+                                                <mat-radio-button value="1" checked="true">Satellite</mat-radio-button>
+                                                <mat-radio-button value="2" checked="false">Street</mat-radio-button>
+                                                <mat-radio-button value ="3" checked="false">Traffic</mat-radio-button>
+                                            </mat-radio-group>
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                    </tr>
+
+                                </table>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="map-frame">
+                                    <div id="map">
+                                        
+                                    </div>
+                                  </div>
+                            </th>
+                        </tr>
+                    </table>
+                </mat-card> 
+            </th>
+            <th>
+                <!--Waypoint-->
+                <div [hidden]="vStation">
+                <mat-card class="card">
+                        <table >
+                            
+                            <tr >
+                                <mat-form-field class="objects" appearance="fill" >
+                                    <mat-label >Associated station</mat-label>
+                                    <mat-select #matRef (selectionChange)="CenterEstacion($event)">
+                                        <mat-option *ngFor="let dato of Datos" [value]="dato.id">
+                                            {{dato.nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field> 
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div>
+                                    <!--Waypoint-->
+                                        <table class="tabla" mat-table [dataSource]="markers"  #TablaC>
+                                            <ng-container matColumnDef="Latitud">
+                                                <th mat-header-cell *matHeaderCellDef>Latitud</th>
+                                                <td mat-cell *matCellDef="let element">{{element.Latitud}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Longitud">
+                                                <th mat-header-cell *matHeaderCellDef>Longitud</th>
+                                                <td mat-cell *matCellDef="let element">{{element.Longitud}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Action">
+                                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                                <td mat-cell *matCellDef="let element" class="action-link">
+                                                    <a mat-button (click)="DeleteMarker(element)" color="primary">Delete</a>
+                                                </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                        </table>
+                                        <mat-paginator  [length]="length" [pageSize]="5"  [showFirstLastButtons]="true"></mat-paginator>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <mat-grid-list cols="2" rowHeight="2:1">
+                                    <mat-grid-tile>
+                                        <button mat-raised-button color="primary" (click)="clear()" >Clear</button>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-raised-button color="primary" (click)="ejecutainsert()">Save</button>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                
+                            </tr>
+                        </table>
+                </mat-card>
+                </div>
+                <!--Estacion-->
+                <div [hidden]="vDatos">
+                    <mat-card class="card">
+                        <tr >
+                            <mat-form-field class="objects" appearance="fill">
+                                <mat-label>Latitude</mat-label>
+                                <input matInput [(value)]="latitud" [readonly]="SoloLectura">
+                            </mat-form-field>
+
+                        </tr>
+                        <tr >
+                            <!--Estacion-->
+
+                            <mat-form-field class="objects" appearance="fill">
+                                <mat-label>Longitude</mat-label>
+                                <input matInput [(value)]="longitud" [readonly]="SoloLectura">
+                            </mat-form-field>
+
+                        </tr>
+                        <tr >
+                            <!--Estacion-->
+
+                                <mat-form-field class="objects"  appearance="fill" >
+                                    <mat-label>Station name</mat-label>
+                                    <input matInput [(ngModel)]="nombre" >
+                                </mat-form-field> 
+
+                        </tr>
+                        <tr >
+                            <!--Estacion-->
+
+                                <mat-form-field class="objects" appearance="fill" >
+                                    <mat-label>Station address</mat-label>
+                                    <input matInput [(ngModel)]="direccion" >
+                                </mat-form-field> 
+
+                        </tr>
+                        <tr>
+                            <mat-grid-list cols="2" rowHeight="2:1">
+                                <mat-grid-tile>
+                                    <button mat-raised-button color="primary" (click)="clear()" >Clear</button>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <button mat-raised-button color="primary" (click)="InsertEstacion($event)">Save</button>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </tr>
+                    </mat-card>
+                </div>
+                <!--Estaciones Edit-->
+                <div [hidden]="vStationEdit">
+                    <div>
+                    <mat-card class="card">
+                        <tr>
+                            <div [hidden]="vliststation">
+                                    
+                                    <mat-label>Stations</mat-label>
+                                        <table class="tabla" mat-table [dataSource]="estaciones"  #EditTabla>
+                                            <ng-container matColumnDef="Nombre">
+                                                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                                                <td mat-cell *matCellDef="let element" >{{element.nombre}}</td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Actions">
+                                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                                <td mat-cell *matCellDef="let element" class="action-link">
+                                                    <a mat-button (click)="getRecord(element)" color="primary">Edit</a>
+                                                </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="estacionesColumns"></tr>
+                                            <tr mat-row  *matRowDef="let row; columns: estacionesColumns;"></tr>
+        
+                                        </table>
+                                        <mat-paginator  [length]="length" [pageSize]="5"  [showFirstLastButtons]="true"></mat-paginator>
+                            </div>
+                            <div [hidden]="vStationEditForm">
+                                <tr >
+                                    <mat-form-field class="objects" appearance="fill">
+                                        <mat-label>Latitude</mat-label>
+                                        <input matInput [(value)]="elatitud" [readonly]="SoloLectura">
+                                    </mat-form-field>
+        
+                                </tr>
+                                <tr >
+
+                                    <mat-form-field class="objects" appearance="fill">
+                                        <mat-label>Longitude</mat-label>
+                                        <input matInput [(value)]="elongitud" [readonly]="SoloLectura">
+                                    </mat-form-field>
+        
+                                </tr>
+                                <tr >
+
+                                        <mat-form-field class="objects"  appearance="fill" >
+                                            <mat-label>Station name</mat-label>
+                                            <input matInput [(ngModel)]="eNombre" >
+                                        </mat-form-field> 
+        
+                                </tr>
+                                <tr >
+                                        <mat-form-field class="objects" appearance="fill" >
+                                            <mat-label>Station address</mat-label>
+                                            <input matInput [(ngModel)]="edireccion" >
+                                        </mat-form-field> 
+        
+                                </tr>
+                                <tr>
+                                    <mat-grid-list cols="2" rowHeight="2:1">
+                                        <mat-grid-tile>
+                                            <button mat-raised-button color="primary" (click)="gotoEstationCancel()">Cancel</button>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+                                            <button mat-raised-button color="primary" (click)="updataestacion($event)">Update</button>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </tr>       
+                            </div>
+                        </tr>
+                    </mat-card>
+                    </div>
+                </div>
+                <!--Estacion Delete-->
+                <div [hidden]="vStationDelete">
+                    <mat-card class="card">
+                        <tr>
+                                    <mat-label>Stations</mat-label>
+                                        <table class="tabla" mat-table [dataSource]="estaciones"  #EditTabla>
+                                            <ng-container matColumnDef="Nombre">
+                                                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                                                <td mat-cell *matCellDef="let element" >{{element.nombre}}</td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Actions">
+                                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                                <td mat-cell *matCellDef="let element" class="action-link">
+                                                    <a mat-button (click)="deletewaypointestacion(element)" color="primary">Delete</a>
+                                                </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="estacionesColumns"></tr>
+                                            <tr mat-row  *matRowDef="let row; columns: estacionesColumns;"></tr>
+        
+                                        </table>
+                                        <mat-paginator  [length]="length" [pageSize]="5"  [showFirstLastButtons]="true"></mat-paginator>
+                        </tr>
+                    </mat-card>
+                </div>
+                <div [hidden]="vWaypointEdit">
+                    <mat-card class="card">
+                        <table>
+                            <tr>
+                                <mat-form-field class="objects" appearance="fill" >
+                                    <mat-label >Associated station</mat-label>
+                                    <mat-select #matStation (selectionChange)="CenterEstacion($event)">
+                                        <mat-option *ngFor="let dato of Datos" [value]="dato.id">
+                                            {{dato.nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field> 
+                            </tr>
+                        </table>
+                    </mat-card>
+                </div>
+            </th>
+
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
+
+

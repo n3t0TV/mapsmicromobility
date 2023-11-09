@@ -1,0 +1,144 @@
+body{ padding: 0; margin: 0; }
+.encabezado {width: 900px;}
+.btn-group {position: absolute; width:auto; top: 10px;}
+.style-check {border-style: solid; border-radius: 5px;}
+.position {top: 10px}
+.select {width: auto;}
+label {
+  font-weight: bold;
+}
+.map-container {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.map-frame {
+  height: 100%;
+}
+
+.mapa {
+  height:700px;
+  width: 900px;
+  top: 70px;
+  background-color: #333;
+}
+/*Legend specific*/
+.legend {
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  line-height: 24px;
+  color: #555;
+}
+.legend h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.legend span {
+  position: relative;
+  bottom: 3px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 0 8px 0 0;
+  opacity: 0.7;
+}
+
+.legend i.icon {
+  background-size: 18px;
+  background-color: rgba(255, 255, 255, 1);
+}
+.shortcut
+{
+  padding: 6px 8px;
+  font: 14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  line-height: 24px;
+  color: #555;
+}
+.shortcut h4 {
+  text-align: center;
+  font-size: 16px;
+  margin: 2px 12px 8px;
+  color: #777;
+}
+
+.sidebar-background{
+  background-color:rgba(255, 255, 255, 1); ;
+}
+.ventana
+{
+  background-color:rgba(255, 255, 255, 1); ;
+  width: auto;
+  height: auto;
+}
+.boton
+{
+  
+  display: flex;
+  align-items: center;
+  position: absolute; width: 900px; height: 50px;
+  
+}
+.radio-class {
+  margin-left: 15px;
+}
+.action{
+z-index:900;
+
+}
+.input
+{
+  border: 0px;
+  width: 175px;
+  
+}
+.termina
+{
+  z-index: 1000;
+}
+.easy-button-button.disabled {
+  display: none;
+}
+.buton-save{
+  width: 75px;
+  height:40px;
+  vertical-align: middle;
+}
+.input-markers
+{
+  width: 160px;
+  height: 40px;
+  border-radius: 8px;
+  border-width: 0.5px;
+}
+.markers
+{
+  width: 600px;
+}
+.select-type{
+  width: auto;
+  height: auto;
+}
+
+.icon{
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,8 @@
+
+.tool-bar{
+    flex: 1 1 auto;
+    background-color:teal;
+    font-style: oblique;
+    color: white;
+   width: 1187px;
+}

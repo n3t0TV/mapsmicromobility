@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+    <div >
+        <mat-toolbar class="tool-bar">
+            <button mat-icon-button [matMenuTriggerFor]="menu" >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <a mat-menu-item routerLink="registre">
+                    <mat-icon>where_to_vote</mat-icon>
+                    <span>Maps Setting</span>
+                </a>
+                <a mat-menu-item routerLink="mapa">
+                    <mat-icon>travel_explore</mat-icon>
+                    <span>Travels</span>
+                </a>
+            </mat-menu>
+            <span>Maps and Routes</span>
+        </mat-toolbar>
+    </div>
+    
+</body>
+</html>

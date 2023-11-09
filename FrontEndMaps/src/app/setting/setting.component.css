@@ -1,0 +1,69 @@
+
+.tabla{
+    
+    align-content: left;
+    width: 300px;
+   
+    border-radius: 16px;
+    
+}
+mat-paginator{
+  width: 300px;
+}
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+  }
+  
+  .map-frame {
+    border: 0px solid black;
+    height: 100%;
+  }
+  
+  #map {
+    flex: 1 1 auto;
+    height: 500px;
+    width: 800px;
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .card{
+    height: 535px;
+  }
+  .card-menu
+  {
+    flex: 1 1 auto;
+    width: 1150px;
+  }
+  .encabezado
+  {
+    width: 100%;
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .objects
+  {
+    width: 300px;
+    border-radius: 16px;
+  }
+  ::ng-deep .red-snackbar {
+    background: #F44336;
+    color: white;
+  }
+  ::ng-deep .green-snackbar {
+    background: #1ba72e;
+    color: white;
+  }
+  .mat-icon
+  {
+    font-size: 16px;
+  }

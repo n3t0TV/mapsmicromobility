@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        $( document ).ready(function() {
+            var element = document.getElementById("frameMapa");
+            element.src=window.location.hostname +":4000"+ "/connections.html";
+            console.log("url",element.src);
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <mat-card>
+                    <table>
+                        <th>
+                            <mat-form-field class="drop" appearance="fill">
+                                <mat-label>Station:</mat-label>
+                                <mat-select #matRef (selectionChange)="GetValor($event)">
+                                    <mat-option *ngFor="let dato of Datos" [value]="dato.id">
+                                        {{dato.nombre}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </th>
+                        <div [hidden]="starGraph">
+                            <th>
+                                <button mat-raised-button color="primary" (click)="CenterEstacion($event)" >Start to draw</button>
+                            </th>
+                        </div>
+                        <div [hidden]="endGraph">
+                            <th>
+                                <button mat-raised-button color="primary" (click)="prueba()" >Finish drawing</button>
+                            </th>
+                        </div>
+    
+                    </table>
+                    
+                    
+                </mat-card>  
+            </tr>
+            <tr>
+                <mat-card>
+                    <table>
+                        <tr>
+                            <th>
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <mat-radio-group color="primary" (change)="cambia($event)" >
+                                                <mat-radio-button value="1" checked="true">Satellite</mat-radio-button>
+                                                <mat-radio-button value="2" checked="false">Street</mat-radio-button>
+                                                <mat-radio-button value ="3" checked="false">Traffic</mat-radio-button>
+                                            </mat-radio-group>
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>
+    
+                                        </th>
+                                        <th>
+    
+                                        </th>
+                                    </tr>
+    
+                                </table>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="map-frame">
+                                    <div id="map">
+                                        
+                                    </div>
+                                  </div>
+                            </th>
+                        </tr>
+                    </table>
+                </mat-card> 
+            </tr>
+        </table>
+    </div>
+
+    <div>
+    <table>
+    <!--iframe #frameMapa class="frame" src= window.location.hostname +":4000"+ "/connections.html">
+
+    </iframe-->
+    </table>
+    </div>
+ 
+</body>
+</html>

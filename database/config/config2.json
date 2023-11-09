@@ -1,0 +1,16 @@
+{
+  "local": {
+    "username": "$YOUR_DB_USER",
+    "password": "$YOUR_PASSWORD",
+    "database": "$YOUR_DB_NAME",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "$YOUR_DB_USER",
+    "password": "$YOUR_PASSWORD",
+    "database": "$YOUR_DB_NAME",
+    "host": "$YOUR_DB_HOST",
+    "dialect": "postgres"
+  }
+}

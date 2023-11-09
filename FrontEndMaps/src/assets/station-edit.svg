@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px"
+	 height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<g id="Capa_1">
+	<path fill="#010002" stroke="#000000" stroke-width="0.8244" stroke-miterlimit="10" d="M14.063,7.04
+		c0.166-2.452-1.643-4.361-4.183-4.361S5.681,4.351,5.681,6.92c0,2.792,4.261,7.96,4.261,7.96S13.861,9.991,14.063,7.04z"/>
+	<circle display="none" fill="#FFFFFF" stroke="#000000" stroke-width="0.8244" stroke-miterlimit="10" cx="9.84" cy="7.12" r="2"/>
+</g>
+<g id="Capa_2">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="7.44" y="4.99" width="5.121" height="5.121"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M10.947,5.579l0.589-0.589l1.024,1.024l-0.59,0.589L10.947,5.579z
+			 M10.589,5.937l1.024,1.024L8.464,10.11H7.44V9.086L10.589,5.937z"/>
+	</g>
+</g>
+</svg>

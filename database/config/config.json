@@ -1,0 +1,16 @@
+{
+  "local": {
+    "username": "postgres",
+    "password": "1234",
+    "database": "maps",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "1234",
+    "database": "maps",
+    "host": "35.226.233.44",
+    "dialect": "postgres"
+  }
+}
